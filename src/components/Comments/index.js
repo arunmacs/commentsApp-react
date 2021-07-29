@@ -62,12 +62,9 @@ class Comments extends Component {
   }
 
   deleteComment = id => {
-    const {commentsData} = this.state
-    const indexNo = commentsData.findIndex(item => id === item.id)
-    const updatedCommentsData = commentsData.splice(indexNo, 1)
-    console.log(indexNo)
-
-    this.setState({commentsData: updatedCommentsData})
+    this.setState(prevState => ({
+      commentsData: prevState.commentsData.filter(item => id !== item.id),
+    }))
   }
 
   getRandomColor = () => {
@@ -126,6 +123,7 @@ class Comments extends Component {
 
   render() {
     const {commentsData} = this.state
+    console.log(commentsData)
 
     return (
       <div className="app-body">
